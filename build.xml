@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // This checks out the source code from your repository
+                checkout scm
+            }
+        }
+        stage('Compile') {
+            steps {
+                // Compile HelloWorld.java using the Java compiler.
+                // For Windows use "bat", for Unix-based systems use "sh".
+                bat 'javac HelloWorld.java'
+                // sh 'javac HelloWorld.java'  // Uncomment if running on Linux/Mac
+            }
+        }
+        stage('Run') {
+            steps {
+                // Run the compiled Java program.
+                bat 'java HelloWorld'
+                // sh 'java HelloWorld'  // Uncomment if running on Linux/Mac
+            }
+        }
+    }
+}
